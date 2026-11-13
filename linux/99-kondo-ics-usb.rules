@@ -1,0 +1,4 @@
+# Kondo ICS USB Adapter HS (FT232R re-flashed with Kondo VID/PID).
+# Allows Chrome WebUSB and libusb to claim the device without root.
+# Install: sudo cp 99-kondo-ics-usb.rules /etc/udev/rules.d/ && sudo udevadm control --reload-rules
+SUBSYSTEM=="usb", ATTRS{idVendor}=="165c", ATTRS{idProduct}=="0006", MODE="0666", GROUP="plugdev", TAG+="uaccess"

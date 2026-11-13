@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>MacKO Manager v0.0.1 (α)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1 id="title">MacKO Manager v0.0.1 <span class="alpha-badge">α</span></h1>
+  <div class="header-right">
+    <select id="lang">
+      <option value="ja">日本語</option>
+      <option value="en">English</option>
+    </select>
+    <span id="status-dot" class="dot off"></span>
+    <span id="status-text" data-i18n="status.disconnected">未接続</span>
+  </div>
+</header>
+
+<section id="connect">
+  <fieldset>
+    <legend data-i18n="connect.title">接続</legend>
+    <label data-i18n="connect.baud">通信速度</label>
+    <select id="baud">
+      <option value="115200">115200</option>
+      <option value="625000" selected>625000</option>
+      <option value="1250000">1250000</option>
+    </select>
+    <button id="btn-baud-auto" data-i18n="connect.autoBaud">自動判別</button>
+    <label data-i18n="connect.id">ID</label>
+    <input id="servo-id" type="number" min="0" max="31" value="0">
+    <button id="btn-connect" data-i18n="connect.connect">接続</button>
+    <button id="btn-disconnect" disabled data-i18n="connect.disconnect">切断</button>
+    <span class="hint" data-i18n="connect.hint">「接続」で Chrome の USBデバイス選択ダイアログが出ます → 「ICS USB ADAPTER HS」を選択</span>
+  </fieldset>
+</section>
+
+<section id="position">
+  <fieldset>
+    <legend data-i18n="pos.title">位置指示（CMD_POS）</legend>
+    <input id="pos-slider" type="range" min="3500" max="11500" value="7500">
+    <input id="pos-value" type="number" min="0" max="16383" value="7500">
+    <button id="btn-pos-send" data-i18n="pos.send">送信</button>
+    <button id="btn-pos-center" data-i18n="pos.center">中央(7500)</button>
+    <label><input id="pos-continuous" type="checkbox"> <span data-i18n="pos.continuous">連続送信</span></label>
+    <button id="btn-pos-free" data-i18n="pos.free">脱力(0)</button>
+    <div class="row">
+      <span data-i18n="pos.current">現在位置:</span>
+      <span id="pos-current">-</span>
+    </div>
+  </fieldset>
+</section>
+
+<section id="params">
+  <fieldset>
+    <legend data-i18n="params.title">パラメータ（READ/WRITE）</legend>
+    <table>
+      <tr>
+        <th data-i18n="params.name">項目</th>
+        <th data-i18n="params.value">値</th>
+        <th data-i18n="params.range">範囲</th>
+        <th></th><th></th>
+      </tr>
+      <tr><td data-i18n="params.stretch">ストレッチ</td><td><input id="p-stretch" type="number" min="1" max="127"></td><td>1–127</td>
+        <td><button data-param="stretch" class="p-read" data-i18n="params.read">読取</button></td>
+        <td><button data-param="stretch" class="p-write" data-i18n="params.write">書込</button></td></tr>
+      <tr><td data-i18n="params.speed">スピード</td><td><input id="p-speed" type="number" min="1" max="127"></td><td>1–127</td>
+        <td><button data-param="speed" class="p-read" data-i18n="params.read">読取</button></td>
+        <td><button data-param="speed" class="p-write" data-i18n="params.write">書込</button></td></tr>
+      <tr><td data-i18n="params.current">電流制限</td><td><input id="p-current" type="number" min="1" max="63"></td><td>1–63</td>
+        <td><button data-param="current" class="p-read" data-i18n="params.read">読取</button></td>
+        <td><button data-param="current" class="p-write" data-i18n="params.write">書込</button></td></tr>
+      <tr><td data-i18n="params.temp">温度制限</td><td><input id="p-temp" type="number" min="1" max="127"></td><td>1–127</td>
+        <td><button data-param="temp" class="p-read" data-i18n="params.read">読取</button></td>
+        <td><button data-param="temp" class="p-write" data-i18n="params.write">書込</button></td></tr>
+    </table>
+  </fieldset>
+</section>
+
+<section id="idop">
+  <fieldset>
+    <legend data-i18n="id.title">ID 読取 / 書換</legend>
+    <p class="hint" data-i18n="id.hint">※ID操作は1台のみ接続した状態で行うこと</p>
+    <button id="btn-id-read" data-i18n="id.read">現在のIDを読む</button>
+    <span id="id-current" class="mono id-current">ID = -</span>
+    <span class="id-gap"></span>
+    <label data-i18n="id.new">新しいID</label>
+    <input id="id-new" type="number" min="0" max="31" value="0">
+    <button id="btn-id-write" data-i18n="id.write">IDを書換</button>
+    <span id="id-result" class="mono"></span>
+  </fieldset>
+</section>
+
+<section id="eeprom">
+  <fieldset>
+    <legend data-i18n="eeprom.title">EEPROM（64バイト全体）</legend>
+    <div class="row">
+      <button id="btn-eeprom-read" data-i18n="eeprom.read">サーボから読取</button>
+      <button id="btn-eeprom-write" data-i18n="eeprom.write">サーボへ書込</button>
+      <button id="btn-sdt-load" data-i18n="eeprom.load">.sdt 読込</button>
+      <button id="btn-sdt-save" data-i18n="eeprom.save">.sdt 保存</button>
+      <input id="file-sdt" type="file" accept=".sdt,.xml" hidden>
+    </div>
+    <div class="row">
+      <label data-i18n="eeprom.model">機種</label>
+      <select id="preset-model"></select>
+      <button id="btn-preset-load" data-i18n="eeprom.presetLoad">初期値を読み込み</button>
+      <button id="btn-factory-reset" class="danger-btn" data-i18n="eeprom.factoryReset">ファクトリーリセット（書込）</button>
+    </div>
+    <div id="eeprom-grid" class="grid"></div>
+    <div class="row">
+      <table id="eeprom-decoded">
+        <tr><td data-i18n="params.stretch">ストレッチ</td>    <td><input class="dec" id="d-stretch"      data-param="stretch"      type="number" min="1" max="127"></td><td class="range-hint">1–127</td></tr>
+        <tr><td data-i18n="params.charStretch1">ストレッチ1(SET1)</td><td><input class="dec" id="d-charStretch1" data-param="charStretch1" type="number" min="1" max="127"></td><td class="range-hint">1–127</td></tr>
+        <tr><td data-i18n="params.charStretch2">ストレッチ2(SET2)</td><td><input class="dec" id="d-charStretch2" data-param="charStretch2" type="number" min="1" max="127"></td><td class="range-hint">1–127</td></tr>
+        <tr><td data-i18n="params.charStretch3">ストレッチ3(SET3)</td><td><input class="dec" id="d-charStretch3" data-param="charStretch3" type="number" min="1" max="127"></td><td class="range-hint">1–127</td></tr>
+        <tr><td data-i18n="params.speed">スピード</td>        <td><input class="dec" id="d-speed"        data-param="speed"        type="number" min="1" max="127"></td><td class="range-hint">1–127</td></tr>
+        <tr><td data-i18n="params.punch">パンチ</td>          <td><input class="dec" id="d-punch"        data-param="punch"        type="number" min="0" max="10"></td><td class="range-hint">0–10</td></tr>
+        <tr><td data-i18n="params.deadband">デッドバンド</td> <td><input class="dec" id="d-deadband"     data-param="deadband"     type="number" min="0" max="5"></td><td class="range-hint">0–5</td></tr>
+        <tr><td data-i18n="params.damping">ダンピング</td>    <td><input class="dec" id="d-damping"      data-param="damping"      type="number" min="1" max="255"></td><td class="range-hint">1–255</td></tr>
+        <tr><td data-i18n="params.safetimer">プロテクション</td><td><input class="dec" id="d-safetimer"   data-param="safetimer"    type="number" min="10" max="255"></td><td class="range-hint">10–255</td></tr>
+        <tr><td data-i18n="params.rspns">応答タイム</td>      <td><input class="dec" id="d-rspns"        data-param="rspns"        type="number" min="1" max="5"></td><td class="range-hint">1–5</td></tr>
+        <tr><td data-i18n="params.flag">フラグ</td>
+            <td><div id="d-flag-bits" class="flag-bits"></div></td>
+            <td class="range-hint"><span id="d-flag-hex" class="mono">0x00</span></td></tr>
+        <tr><td data-i18n="params.poslimitH">リミット(正転)</td><td><input class="dec" id="d-poslimitH" data-param="poslimitH" type="number" min="0" max="16383"></td><td class="range-hint">0–16383</td></tr>
+        <tr><td data-i18n="params.poslimitL">リミット(逆転)</td><td><input class="dec" id="d-poslimitL" data-param="poslimitL" type="number" min="0" max="16383"></td><td class="range-hint">0–16383</td></tr>
+        <tr><td data-i18n="params.baud">通信速度</td>
+            <td><div id="d-baud-radios" class="baud-radios"></div></td>
+            <td class="range-hint" data-i18n="params.baudHint">(別コマンドで送信)</td></tr>
+        <tr><td data-i18n="params.temp">温度制限</td>         <td><input class="dec" id="d-temp"      data-param="temp"      type="number" min="1" max="127"></td><td class="range-hint">1–127</td></tr>
+        <tr><td data-i18n="params.current">電流制限</td>      <td><input class="dec" id="d-current"   data-param="current"   type="number" min="1" max="63"></td><td class="range-hint">1–63</td></tr>
+        <tr><td data-i18n="params.offset">ユーザオフセット</td><td><input class="dec" id="d-offset"    data-param="offset"    type="number" min="-127" max="127"></td><td class="range-hint">-127~127</td></tr>
+        <tr><td data-i18n="params.id">ID</td>                 <td><input class="dec" id="d-id"        data-param="id"        type="number" min="0" max="31"></td><td class="range-hint">0–31</td></tr>
+        <tr><td data-i18n="params.version">バージョン</td>    <td><input class="dec" id="d-version"   data-param="version"   type="number" readonly></td><td class="range-hint" data-i18n="params.readonly">読取専用</td></tr>
+      </table>
+    </div>
+  </fieldset>
+</section>
+
+<section id="log">
+  <fieldset>
+    <legend data-i18n="log.title">通信ログ</legend>
+    <div class="row">
+      <button id="btn-log-clear" data-i18n="log.clear">クリア</button>
+      <label><input id="log-hex" type="checkbox" checked> HEX</label>
+    </div>
+    <pre id="log-out"></pre>
+  </fieldset>
+</section>
+
+<script src="js/i18n.js"></script>
+<script src="js/serial.js"></script>
+<script src="js/ics.js"></script>
+<script src="js/eeprom.js"></script>
+<script src="js/sdt.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+  .sdt format reference for MacKO Manager.
+  Rename this file to <model>.sdt (e.g. KRS-4034HV.sdt) and fill in the 64
+  <unsignedByte> values. Bytes 0,1 are the 0xFF header; the remaining 62
+  are nibble values (0-15) paired into 32 real EEPROM bytes.
+  See README.md in this folder for the official source.
+-->
+<IcsBaseCommand xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <eepromData>
+    <unsignedByte>255</unsignedByte>
+    <unsignedByte>255</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+    <unsignedByte>0</unsignedByte>
+  </eepromData>
+  <IcsVersion>0</IcsVersion>
+</IcsBaseCommand>
