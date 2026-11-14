@@ -40,6 +40,12 @@ cd MacKO_manager
 
 **macOS**:
 `launch.command` をダブルクリック（初回は右クリック→開く）。
+「適切なアクセス権限がないために実行できません」と出る場合は、ターミナルで一度だけ実行:
+```sh
+cd ~/Downloads/MacKO_manager-main   # 展開したフォルダ
+chmod +x launch.command launch.sh linux/*.sh
+xattr -dr com.apple.quarantine .
+```
 
 **Linux**:
 ```sh
@@ -106,6 +112,12 @@ cd MacKO_manager
 
 **macOS**:
 Double-click `launch.command` (first time: right-click → Open).
+If macOS says it "could not be executed because you do not have appropriate access privileges", run once in Terminal:
+```sh
+cd ~/Downloads/MacKO_manager-main   # the extracted folder
+chmod +x launch.command launch.sh linux/*.sh
+xattr -dr com.apple.quarantine .
+```
 
 **Linux**:
 ```sh
