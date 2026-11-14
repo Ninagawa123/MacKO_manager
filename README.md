@@ -1,5 +1,7 @@
 # MacKO Manager
 
+![MacKO Manager](docs/thumbnail.jpg)
+
 [日本語](#日本語) &nbsp;|&nbsp; [English](#english)
 
 > ⚠️ **α版 / Alpha release** — 実機動作は限定的に確認済みですが、サーボを破損する可能性がゼロではありません。**自己責任でご使用ください**。
