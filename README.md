@@ -52,6 +52,8 @@ xattr -dr com.apple.quarantine .
 
 ## 使い方
 
+<img src="docs/screenshot.png" width="600" alt="MacKO Manager 画面">
+
 1. ICS USB Adapter HS を挿し、サーボを接続して電源 ON
 2. 「接続」→ Chrome のダイアログで `ICS USB ADAPTER HS` を選択
 3. 「自動判別」で通信速度と ID を自動検出

@@ -52,6 +52,8 @@ xattr -dr com.apple.quarantine .
 
 ## Usage
 
+<img src="docs/screenshot.png" width="600" alt="MacKO Manager screenshot">
+
 1. Plug in the ICS USB Adapter HS, connect a servo, and power it on
 2. Click **Connect** → pick `ICS USB ADAPTER HS` in Chrome's dialog
 3. Click **Auto** to auto-detect baud rate and ID
